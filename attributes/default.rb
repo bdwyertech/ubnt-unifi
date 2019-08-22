@@ -1,22 +1,28 @@
-# Encoding: UTF-8
+# Default Attributes for unifi.
+#
+# Attributes:: default
+# Cookbook:: unifi
+# Author:: Greg Albrecht <gba@onbeep.com>
+# License:: Apache License, Version 2.0
+# Copyright:: Copyright 2014 OnBeep, Inc.
+# Source:: https://github.com/onbeep-cookbooks/unifi
+#
 
-# => Specify Unifi package to install
+#
+# Specify Unifi package to install.
+#   There are 3 packages in the same repository:
+#     - unifi       (the most stable)
+#     - unifi-rapid (soaked beta/rc/stable)
+#     - unifi-beta  (the cutting edge)
+#   BONUS: You can install / switch between them!
+#
 default['unifi']['package'] = 'unifi'
 
-# => Guest Access Mode (pass/off)
-# => When set to pass, guest networks stay online if controller inaccessible
-# => When set to off, guest networks are not available if inaccessible
-default['unifi']['config']['selfrun_guest_mode'] = 'off'
-
-# => Unifi Configuration Directory (Don't Touch!)
-default['unifi']['config']['dir'] = '/usr/lib/unifi/data/'
-
-# => Firewall Management
-default['unifi']['ufw']['managed'] = true
-
-# => Unifi Port Configuration (Don't Touch!)
-default['unifi']['port']['web_gui'] = '8443'
-default['unifi']['port']['guest_http'] = '8880'
-default['unifi']['port']['guest_https'] = '8843'
-default['unifi']['port']['mgmt'] = '8080..8081'
-default['unifi']['port']['discovery'] = '10001'
+#
+# Specify the apt components
+#   There are three available
+#     - unifi4/stable  (Unifi version 4.x.x)
+#     - unifi5         (Unifi version 5.x.x)
+#     - unifi3         (Unifi version 3.x.x)
+#
+default['unifi']['apt_components'] = %w(stable ubiquiti)

@@ -1,23 +1,74 @@
-# ubnt-unifi cookbook
-This is a cookbook to install the Ubiquiti Unifi AP Controller
+# unifi Cookbook
 
-# Requirements
-- Ubuntu 12.04 - Tested on 12.04.4
+[![Cookbook Version](http://img.shields.io/cookbook/v/unifi.svg)][cookbook] [![CircleCI](https://circleci.com/gh/sous-chefs/unifi.svg?style=svg)](https://circleci.com/gh/sous-chefs/unifi)
 
-# Attributes
-- node['unifi']['package'] - (unifi, unifi-beta) Sets Unifi package to be installed 
-- node['unifi']['ufw']['managed'] - (true/false) - Will open required ports for Unifi.
-- node['unifi']['config']['self_run_guest_mode'] - (pass/off) Controls behavior of guest SSID's when controller unavailable.
-NOTE: The self_run_guest_mode won't take effect until a second Chef run after the controller has been configured.  The 3.X Unifi seems to not allow a configuration.properties to exist until the controller has been set up.  If the controller hasn't been set up, Unifi seems to delete the file.
+This Cookbook includes Recipes to install, configure & enable Ubiquiti's UniFi Access-Point controller software.
 
-# Recipes
-- ::default - Installs Unifi and configures ufw firewall if node['ufw']['managed'] is true.
-- ::install - Installs Unifi
-- ::ufw - Configures ufw firewall to open the required ports for Unifi.
+## Requirements
 
-# Notes
-Feel free to fork this, modify and/or add to it.
+### Platform
 
-# Author
+- Ubuntu
+- Debian
 
-Author:: Intelligent Digital Services - Brian Dwyer
+### Chef
+
+- Chef 12.1+
+
+### Java
+
+UniFi requires Java 8 ([UniFi Java Requirements](https://help.ubnt.com/hc/en-us/articles/360008240754#7)). The `java` cookbook can be used to install JRE 8 with the appropriate attributes:
+
+```ruby
+node.default['java']['jdk_version'] = "8"
+include_recipe 'java'
+```
+
+## Recipes
+
+### default
+
+Includes other requisite Recipes - **USE THIS**.
+
+### ppa
+
+Configures Ubiquiti's PPA repository for package installs.
+
+### package
+
+Installs unifi package.
+
+### service
+
+Configures unifi service.
+
+## Usage
+
+Put `recipe[unifi]` in the Run List. Run Chef. Enjoy.
+
+## Authors
+
+- Author:: Brian Dwyer <https://github.com/bdwyertech>
+- Author:: Greg Albrecht (gba@orionlabs.io) <https://github.com/ampledata>
+- Author:: Tim Smith (tsmith@chef.io) <https://github.com/tas50>
+
+## License
+
+```text
+Copyright 2014-2016 Orion Labs, Inc.
+Copyright 2016 Chef Software, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+[cookbook]: https://community.opscode.com/cookbooks/unifi

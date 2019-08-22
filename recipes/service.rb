@@ -1,6 +1,6 @@
-# Includes requisite Recipies for unifi.
+# Configures unifi service.
 #
-# Recipe:: default
+# Recipe:: service
 # Cookbook:: unifi
 # Author:: Greg Albrecht <gba@onbeep.com>
 # License:: Apache License, Version 2.0
@@ -8,6 +8,7 @@
 # Source:: https://github.com/onbeep-cookbooks/unifi
 #
 
-include_recipe 'unifi::ppa'
-include_recipe 'unifi::package'
-include_recipe 'unifi::service'
+service 'unifi' do
+  supports status: true, restart: true, reload: true
+  action [:enable, :start]
+end

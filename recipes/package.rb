@@ -1,6 +1,6 @@
-# Includes requisite Recipies for unifi.
+# Installs unifi package.
 #
-# Recipe:: default
+# Recipe:: package
 # Cookbook:: unifi
 # Author:: Greg Albrecht <gba@onbeep.com>
 # License:: Apache License, Version 2.0
@@ -8,6 +8,4 @@
 # Source:: https://github.com/onbeep-cookbooks/unifi
 #
 
-include_recipe 'unifi::ppa'
-include_recipe 'unifi::package'
-include_recipe 'unifi::service'
+apt_package node['unifi']['package']

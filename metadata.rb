@@ -1,10 +1,17 @@
-name             'ubnt-unifi'
-maintainer       'Brian Dwyer - Intelligent Digital Services'
-maintainer_email 'BDwyerTech'
-license          'All rights reserved'
-description      'Installs/Configures ubnt-unifi'
+name             'unifi'
+maintainer       'Tim Smith'
+maintainer_email 'tsmith@chef.io'
+license          'Apache-2.0'
+description      'Installs/Configures Ubiquiti UniFi server.'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version '1.2.0'
 
-depends 'apt'
-depends 'ufw'
+supports 'ubuntu'
+supports 'debian'
+
+depends 'java'
+
+source_url 'https://github.com/sous-chefs/unifi'
+issues_url 'https://github.com/sous-chefs/unifi/issues'
+
+chef_version '>= 12.7'
